@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliminar Libro</title>
+</head>
+<body>
+  <h1>Eliminar Libro</h1>
+  <p>¿Estás seguro de que deseas eliminar el libro "{{ book.title }}" de {{ book.author }}?</p>
+  <form action="" method="post">
+    <button type="submit">Sí, eliminar</button>
+    <a href="{{ url_for('main.index') }}">Cancelar</a>
+  </form>
+</body>
+</html>
