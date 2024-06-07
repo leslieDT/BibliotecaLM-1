@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de la Búsqueda</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h1>Resultados de la Búsqueda para "{{ search_term }}"</h1>
+{% extends 'base.html' %}
+
+{% block title %}Resultados de la Búsqueda{% endblock %}
+
+{% block content %}
+<h1>Resultados de la Búsqueda</h1>
+{% if books %}
     <ul>
         {% for book in books %}
-        <li>{{ book.title }} - {{ book.author }} - {{ book.genre }} - {{ book.year }}</li>
+            <li>
+                <strong>{{ book.title }}</strong> por {{ book.author }} ({{ book.year }}) - {{ book.genre }}
+                <a href="{{ url_for('update_book', id=book.id) }}">Editar</a>
+                <form action="{{ url_for('delete_book', id=book.id) }}" method="post" style="display:inline;">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% else %}
+    <p>No se encontraron libros que coincidan con tu búsqueda.</p>
+{% endif %}
+<a href="{{ url_for('index') }}">Volver al listado</a>
+{% endblock %}
