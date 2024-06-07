@@ -90,3 +90,12 @@ class BookResource(Resource):
         db.session.delete(book)
         db.session.commit()
         return {'message': 'Book deleted'}
+
+from flask import request
+
+@main.route('/search')
+def search():
+    query = request.args.get('query')
+    # Realizar la búsqueda en la base de datos según el query
+    # books = Book.query.filter(...).all() 
+    return render_template('search_results.html', books=books, query=query)

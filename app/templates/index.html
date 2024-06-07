@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblioteca</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
   <h1>Biblioteca</h1>
@@ -19,5 +20,9 @@
       </li>
     {% endfor %}
   </ul>
+  <form action="{{ url_for('main.search') }}" method="GET" class="form-group">
+    <input type="text" name="query" placeholder="Buscar por título, autor, género o año">
+    <button type="submit">Buscar</button>
+</form>
 </body>
 </html>
