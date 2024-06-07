@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblioteca</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+  <h1>Lista de Libros</h1>
+  <ul>
+      {% for book in books %}
+          <li>{{ book.title }} - {{ book.author }}</li>
+      {% endfor %}
+  </ul>
   <h1>Biblioteca</h1>
   <a href="{{ url_for('main.add_book') }}">Agregar Libro</a>
   <ul>
@@ -24,5 +30,6 @@
     <input type="text" name="query" placeholder="Buscar por título, autor, género o año">
     <button type="submit">Buscar</button>
 </form>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </body>
 </html>

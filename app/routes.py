@@ -40,7 +40,7 @@ def delete_book(id):
     book = Book.query.get_or_404(id)
     db.session.delete(book)
     db.session.commit()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('index'))
 
 
 
@@ -91,11 +91,19 @@ class BookResource(Resource):
         db.session.commit()
         return {'message': 'Book deleted'}
 
-from flask import request
+from flask import render_template, request
+from app import app
+from models import Book
 
-@main.route('/search')
-def search():
-    query = request.args.get('query')
-    # Realizar la búsqueda en la base de datos según el query
-    # books = Book.query.filter(...).all() 
-    return render_template('search_results.html', books=books, query=query)
+@app.route('/search', methods=['GET', 'POST'])
+def search_books():
+    if request.method == 'POST':
+        search_term = request.form['search_term']
+        books = Book.query.filter(
+            (Book.title.ilike(f'%{search_term}%')) |
+            (Book.author.ilike(f'%{search_term}%')) |
+            (Book.genre.ilike(f'%{search_term}%'))
+        ).all()
+        return render_template('search_results.html', books=books, search_term=search_term)
+    else:
+        return render_template('search_form.html')

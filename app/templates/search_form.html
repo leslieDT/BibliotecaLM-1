@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Libros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Buscar Libros</h1>
+    <form action="/search" method="POST">
+        <label for="search_term">Buscar por título, autor o género:</label><br>
+        <input type="text" id="search_term" name="search_term"><br><br>
+        <input type="submit" value="Buscar">
+    </form>
+</body>
+</html>
