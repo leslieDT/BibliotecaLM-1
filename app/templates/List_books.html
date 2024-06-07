@@ -8,16 +8,11 @@
     {% for book in books %}
         <li>
             <strong>{{ book.title }}</strong> por {{ book.author }} ({{ book.year }}) - {{ book.genre }}
-            <a href="{{ url_for('update_book', id=book.id) }}">Editar</a>
-            <form action="{{ url_for('delete_book', id=book.id) }}" method="post" style="display:inline;">
+            <a href="{{ url_for('main.update_book', id=book.id) }}">Editar</a>
+            <form action="{{ url_for('main.delete_book', id=book.id) }}" method="post" style="display:inline;">
                 <button type="submit">Eliminar</button>
             </form>
         </li>
     {% endfor %}
 </ul>
-<a href="{{ url_for('add_book') }}">Agregar Libro</a>
-<form action="{{ url_for('search_books') }}" method="GET" class="form-group">
-    <input type="text" name="query" placeholder="Buscar por título, autor, género o año">
-    <button type="submit">Buscar</button>
-</form>
 {% endblock %}

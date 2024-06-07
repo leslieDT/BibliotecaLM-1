@@ -3,12 +3,9 @@
 {% block title %}Listado de Libros{% endblock %}
 
 {% block content %}
-  <h1>Lista de Libros</h1>
-  <ul>
-      {% for book in books %}
-          <li>{{ book.title }} - {{ book.author }}</li>
-      {% endfor %}
-  </ul>
+<h1>Bienvenido a la Biblioteca Virtual</h1>
+<p>Explora nuestra colección de libros y encuentra tu próxima lectura favorita.</p>
+<a href="{{ url_for('main.list_books') }}">Ver todos los libros</a>
   <h1>Biblioteca</h1>
   <a href="{{ url_for('main.add_book') }}">Agregar Libro</a>
   <ul>
@@ -16,7 +13,7 @@
       <li>
         {{ book.title }} by {{ book.author }}
         <a href="{{ url_for('main.update_book', id=book.id) }}">Editar</a>
-        <form action="{{ url_for('main.delete_book', id=book.id) }}" method="post" style="display:inline;">
+        <form action="{{ url_for('main.delete', id=book.id) }}" method="post" style="display:inline;">
           <button type="submit">Eliminar</button>
         </form>
       </li>

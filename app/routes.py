@@ -7,8 +7,13 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    books = Book.query.all()
-    return render_template('index.html', books=books)
+    book = Book.query.all()
+    return render_template('index.html', Book=Book)
+
+@main.route('/list_books')
+def list_books():
+    # Lógica para obtener y mostrar todos los libros
+    return render_template('list_books.html', Book=Book)
 
 @main.route('/add', methods=['GET', 'POST'])
 def add_book():
